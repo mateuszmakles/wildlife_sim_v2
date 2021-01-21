@@ -1,7 +1,8 @@
-#include "Simulator.h"
+#include "Director.h"
 
 int main() {
 	// Simulator( columns, rows, turns, non-predators, predators );
-	Simulator* sim = new Simulator(10, 10, 20, 10, 5);
+	Director* director = new Director(10, 10, 20, 10, 5);
+	director->run();
 	return 0;
 }

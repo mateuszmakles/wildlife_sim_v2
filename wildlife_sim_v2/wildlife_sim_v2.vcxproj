@@ -141,14 +141,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animal.cpp" />
+    <ClCompile Include="Director.cpp" />
     <ClCompile Include="Predator.cpp" />
-    <ClCompile Include="Simulator.cpp" />
+    <ClCompile Include="temp.cpp" />
     <ClCompile Include="wildlife_sim_v2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animal.h" />
     <ClInclude Include="Predator.h" />
-    <ClInclude Include="Simulator.h" />
+    <ClInclude Include="Director.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
