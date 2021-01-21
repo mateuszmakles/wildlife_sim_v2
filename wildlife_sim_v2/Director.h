@@ -18,6 +18,8 @@ public:
 private:
 	void spawnAnimal();
 	void spawnPredator();
+
+	void movePhase();
 };
 
 #endif
