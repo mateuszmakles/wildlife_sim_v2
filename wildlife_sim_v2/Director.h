@@ -28,6 +28,7 @@ private:
 
 	void movePhase();
 	void resolve();
+	void hungerPhase();
 };
 
 #endif

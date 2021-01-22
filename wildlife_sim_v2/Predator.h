@@ -5,12 +5,19 @@
 
 class Predator : public Animal {
 	static int numbOfPredators;
+	int hunger;
 public:
 	Predator(int xx, int yy);
 
 	static int getPredatorCount() { return numbOfPredators; }
 
 	static void decrementNumbOfPredators() { --numbOfPredators; }
+
+	void starve() { ++hunger; }
+	void resetHunger() { hunger = 0; }
+	bool isDead() const { return hunger >= 2; }
+	void eat() { hunger = -1; }
+	bool hasEaten() const { return hunger == -1; }
 };
 
 #endif

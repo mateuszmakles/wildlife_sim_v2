@@ -26,6 +26,8 @@ void Director::run() {
 
 		resolve();
 
+		hungerPhase();
+
 		++currentTurn;
 	}
 
@@ -98,6 +100,22 @@ void Director::movePhase() {
 	}
 }
 
+void Director::hungerPhase() {
+	for (auto& p : animals) {
+
+		if (p->getType() == "Predator") {
+
+			dynamic_cast<Predator*>(p)->hasEaten() ? dynamic_cast<Predator*>(p)->resetHunger() : dynamic_cast<Predator*>(p)->starve();
+
+			if (dynamic_cast<Predator*>(p)->isDead()) {
+				p->printInfo();
+				std::cout << " has died of starvation\n";
+				deleteAnimal(p);
+			}
+		}
+	}
+}
+
 void Director::resolve() {
 	auto a = animals; // we're going to loop through this copy to not interrupt original through adding and deleting animals
 
@@ -126,6 +144,7 @@ void Director::resolve() {
 				// Eating second animal
 				if (compareForEat(a[i], a[ii])) {
 					deleteAnimal(a[ii]);
+					dynamic_cast<Predator*>(a[i])->eat();
 					a[i]->printInfo();
 					std::cout << " has eaten an animal\n";
 				}
