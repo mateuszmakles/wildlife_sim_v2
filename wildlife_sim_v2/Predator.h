@@ -6,7 +6,11 @@
 class Predator : public Animal {
 	static int numbOfPredators;
 public:
-	Predator();
+	Predator(int xx, int yy);
+
+	static int getPredatorCount() { return numbOfPredators; }
+
+	static void decrementNumbOfPredators() { --numbOfPredators; }
 };
 
 #endif

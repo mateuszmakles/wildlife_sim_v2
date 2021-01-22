@@ -16,10 +16,18 @@ public:
 	void run();
 
 private:
-	void spawnAnimal();
-	void spawnPredator();
+	const int getRandom(int max) const;
+
+	void spawnAnimal(int xx, int yy);
+	void spawnPredator(int xx, int yy);
+
+	bool compareForBreed(Animal* a1, Animal* a2) const;
+	bool compareForEat(Animal* a1, Animal* a2) const;
+
+	void deleteAnimal(Animal* animal);
 
 	void movePhase();
+	void resolve();
 };
 
 #endif

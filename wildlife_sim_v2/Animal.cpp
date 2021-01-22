@@ -3,14 +3,14 @@
 
 int Animal::numbOfAnimals = 0;
 
-Animal::Animal()
-	: gender{ Sex::male }, x{ 0 }, y{ 0 }, id{ numbOfAnimals++ }, type{ "Animal" } {
+Animal::Animal(int xx, int yy)
+	: gender{ static_cast<Sex>(rand() % 2) }, x{ xx }, y{ yy }, id{ numbOfAnimals++ }, type{ "Animal" }, hasBred{ 0 } {
 	printInfo();
 	std::cout << " spawned\n";
 }
 
-Animal::Animal(int pId) // this one is for predators
-	: gender{ Sex::male }, x{ 0 }, y{ 0 }, id{ pId }, type{ "Predator" } {
+Animal::Animal(int pId, int xx, int yy) // this one is for predators
+	: gender{ static_cast<Sex>(rand() % 2) }, x{ xx }, y{ yy }, id{ pId }, type{ "Predator" }, hasBred{ 0 } {
 	printInfo();
 	std::cout << " spawned\n";
 }
