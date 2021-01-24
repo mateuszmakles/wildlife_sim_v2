@@ -5,7 +5,7 @@
 
 class Animal {
 public:
-	enum class Sex {
+	enum class Sex : char {
 		male,
 		female,
 
@@ -36,6 +36,7 @@ public:
 
 	virtual void printInfo() const;
 
+	void move(int dir);
 	void goRight();
 	void goLeft();
 	void goDown();

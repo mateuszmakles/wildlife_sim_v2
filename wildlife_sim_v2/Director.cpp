@@ -2,8 +2,8 @@
 #include "Animal.h"
 #include "Predator.h"
 #include <iostream>
-#include <random> // for std::mt19937
-#include <ctime> // for std::time
+#include <random>
+#include <ctime>
 
 Director::Director(int col, int row, int turns, int nons, int preds)
 	: columns{ col }, rows{ row }, maxTurns{ turns } {
@@ -75,6 +75,7 @@ void Director::movePhase() {
 
 	for (auto& animal : animals) {
 		direction = getRandom(3);
+		//animal->move(getRandom(3)); i getPosition();
 
 		switch (direction) {
 		case 0: // go right
@@ -105,12 +106,16 @@ void Director::hungerPhase() {
 
 		if (p->getType() == "Predator") {
 
-			dynamic_cast<Predator*>(p)->hasEaten() ? dynamic_cast<Predator*>(p)->resetHunger() : dynamic_cast<Predator*>(p)->starve();
+			Predator* pred{ dynamic_cast<Predator*>(p) };
 
-			if (dynamic_cast<Predator*>(p)->isDead()) {
-				p->printInfo();
-				std::cout << " has died of starvation\n";
-				deleteAnimal(p);
+			if (pred) {
+				pred->hasEaten() ? pred->resetHunger() : pred->starve();
+
+				if (pred->isDead()) {
+					p->printInfo();
+					std::cout << " has died of starvation\n";
+					deleteAnimal(p);
+				}
 			}
 		}
 	}
@@ -144,7 +149,10 @@ void Director::resolve() {
 				// Eating second animal
 				if (compareForEat(a[i], a[ii])) {
 					deleteAnimal(a[ii]);
-					dynamic_cast<Predator*>(a[i])->eat();
+					Predator* pred{ dynamic_cast<Predator*>(a[i]) };
+					if (pred) {
+						pred->eat();
+					}
 					a[i]->printInfo();
 					std::cout << " has eaten an animal\n";
 				}

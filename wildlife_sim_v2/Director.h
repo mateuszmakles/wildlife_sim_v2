@@ -1,9 +1,9 @@
 #ifndef DIRECTOR_H
 #define DIRECTOR_H
 
-#include "Animal.h"
-#include "Predator.h"
 #include <vector>
+
+class Animal;
 
 class Director {
 	int columns;

@@ -19,6 +19,10 @@ void Animal::printInfo() const {
 	std::cout << "( " << x << ',' << y << " )\t" << type;
 }
 
+void Animal::move(int dir) {
+
+}
+
 void Animal::goRight() {
 	++x;
 	printInfo();
