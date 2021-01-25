@@ -75,27 +75,26 @@ void Director::movePhase() {
 
 	for (auto& animal : animals) {
 		direction = getRandom(3);
-		//animal->move(getRandom(3)); i getPosition();
 
 		switch (direction) {
 		case 0: // go right
-			if (animal->getX() < columns - 1) {
-				animal->goRight();
+			if (animal->getPos().at(0) < columns - 1) {
+				animal->move(direction);
 			}
 			break;
 		case 1: // go left
-			if (animal->getX() > 0) {
-				animal->goLeft();
+			if (animal->getPos().at(0) > 0) {
+				animal->move(direction);
 			}
 			break;
 		case 2: // go down
-			if (animal->getY() < rows - 1) {
-				animal->goDown();
+			if (animal->getPos().at(1) < rows - 1) {
+				animal->move(direction);
 			}
 			break;
 		case 3: // go up
-			if (animal->getY() > 0) {
-				animal->goUp();
+			if (animal->getPos().at(1) > 0) {
+				animal->move(direction);
 			}
 		}
 	}
@@ -128,7 +127,7 @@ void Director::resolve() {
 
 		for (int ii = 0; ii < a.size(); ++ii) {
 
-			if (a[i] != a[ii] && a[i]->getX() == a[ii]->getX() && a[i]->getY() == a[ii]->getY()) {
+			if (a[i] != a[ii] && a[i]->getPos().at(0) == a[ii]->getPos().at(0) && a[i]->getPos().at(1) == a[ii]->getPos().at(1)) {
 
 				// Breeding with second animal
 				if (compareForBreed(a[i], a[ii])) {
@@ -139,10 +138,10 @@ void Director::resolve() {
 					std::cout << "s have bred\n";
 
 					if (a[i]->getType() == "Animal") {
-						spawnAnimal(a[i]->getX(), a[i]->getY());
+						spawnAnimal(a[i]->getPos().at(0), a[i]->getPos().at(1));
 					}
 					else {
-						spawnPredator(a[i]->getX(), a[i]->getY());
+						spawnPredator(a[i]->getPos().at(0), a[i]->getPos().at(1));
 					}
 				}
 

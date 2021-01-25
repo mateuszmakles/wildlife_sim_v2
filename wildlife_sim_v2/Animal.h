@@ -2,6 +2,7 @@
 #define ANIMAL_H
 
 #include <string_view>
+#include <array>
 
 class Animal {
 public:
@@ -27,8 +28,7 @@ public:
 	static void decrementNumbOfAnimals() { --numbOfAnimals; }
 
 	const Sex getGender() const { return gender; }
-	const int getX() const { return x; }
-	const int getY() const { return y; }
+	const std::array<int, 2> getPos() const { return { x,y }; }
 	const std::string_view getType() const { return type; }
 	bool canBreed() { return !hasBred; }
 
@@ -37,10 +37,6 @@ public:
 	virtual void printInfo() const;
 
 	void move(int dir);
-	void goRight();
-	void goLeft();
-	void goDown();
-	void goUp();
 };
 
 #endif

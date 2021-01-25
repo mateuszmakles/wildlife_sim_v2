@@ -147,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animal.h" />
+    <ClInclude Include="Position.h" />
     <ClInclude Include="Predator.h" />
     <ClInclude Include="Director.h" />
   </ItemGroup>
