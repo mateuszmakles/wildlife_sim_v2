@@ -7,7 +7,7 @@ class Predator : public Animal {
 	static int numbOfPredators;
 	int hunger;
 public:
-	Predator(int xx, int yy);
+	Predator(const Vector2D& vect);
 
 	static int getPredatorCount() { return numbOfPredators; }
 

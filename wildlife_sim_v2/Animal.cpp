@@ -3,41 +3,41 @@
 
 int Animal::numbOfAnimals = 0;
 
-Animal::Animal(int xx, int yy)
-	: gender{ static_cast<Sex>(rand() % 2) }, x{ xx }, y{ yy }, id{ numbOfAnimals++ }, type{ "Animal" }, hasBred{ 0 } {
+Animal::Animal(const Vector2D& vect)
+	: gender{ static_cast<Sex>(rand() % 2) }, coords{ vect }, id{ numbOfAnimals++ }, type{ "Animal" }, hasBred{ 0 } {
 	printInfo();
 	std::cout << " spawned\n";
 }
 
-Animal::Animal(int pId, int xx, int yy) // this one is for predators
-	: gender{ static_cast<Sex>(rand() % 2) }, x{ xx }, y{ yy }, id{ pId }, type{ "Predator" }, hasBred{ 0 } {
+Animal::Animal(int pId, const Vector2D& vect) // this one is for predators
+	: gender{ static_cast<Sex>(rand() % 2) }, coords{ vect }, id{ pId }, type{ "Predator" }, hasBred{ 0 } {
 	printInfo();
 	std::cout << " spawned\n";
 }
 
 void Animal::printInfo() const {
-	std::cout << "( " << x << ',' << y << " )\t" << type;
+	std::cout << "( " << coords.x << ',' << coords.y << " )\t" << type;
 }
 
 void Animal::move(int dir) {
 	switch (dir) {
 	case 0: // go right
-		++x;
+		++coords.x;
 		printInfo();
 		std::cout << " went right\n";
 		break;
 	case 1: // go left
-		--x;
+		--coords.x;
 		printInfo();
 		std::cout << " went left\n";
 		break;
 	case 2: // go down
-		++y;
+		++coords.y;
 		printInfo();
 		std::cout << " went down\n";
 		break;
 	case 3: // go up
-		--y;
+		--coords.y;
 		printInfo();
 		std::cout << " went up\n";
 	}

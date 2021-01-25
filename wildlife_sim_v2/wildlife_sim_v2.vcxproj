@@ -149,6 +149,7 @@
     <ClInclude Include="Animal.h" />
     <ClInclude Include="Predator.h" />
     <ClInclude Include="Director.h" />
+    <ClInclude Include="Vector2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

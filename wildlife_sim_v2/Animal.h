@@ -2,7 +2,7 @@
 #define ANIMAL_H
 
 #include <string_view>
-#include <array>
+#include "Vector2D.h"
 
 class Animal {
 public:
@@ -16,19 +16,20 @@ private:
 	static int numbOfAnimals;
 	int id;
 	Sex gender;
-	int x;
-	int y;
+	Vector2D coords;
 	std::string type;
 	bool hasBred;
 public:
-	Animal(int xx, int yy);
-	Animal(int pId, int xx, int yy);
+	Animal(const Vector2D& vect);
+	Animal(int pId, const Vector2D& vect);
 
 	static int getAnimalCount() { return numbOfAnimals; }
 	static void decrementNumbOfAnimals() { --numbOfAnimals; }
 
+	const Vector2D& getPos() const { return coords; }
+	void setPos(const Vector2D& vect) { coords = vect; }
+
 	const Sex getGender() const { return gender; }
-	const std::array<int, 2> getPos() const { return { x,y }; }
 	const std::string_view getType() const { return type; }
 	bool canBreed() { return !hasBred; }
 

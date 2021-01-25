@@ -8,10 +8,10 @@
 Director::Director(int col, int row, int turns, int nons, int preds)
 	: columns{ col }, rows{ row }, maxTurns{ turns } {
 	for (int i = 0; i < nons; ++i) {
-		spawnAnimal(getRandom(columns - 1), getRandom(rows - 1));
+		spawnAnimal(Vector2D{ getRandom(columns - 1),getRandom(rows - 1) });
 	}
 	for (int i = 0; i < preds; ++i) {
-		spawnPredator(getRandom(columns - 1), getRandom(rows - 1));
+		spawnPredator(Vector2D{ getRandom(columns - 1),getRandom(rows - 1) });
 	}
 }
 
@@ -45,12 +45,12 @@ const int Director::getRandom(int max) const {
 	return roll(mersenne);
 }
 
-void Director::spawnAnimal(int xx, int yy) {
-	animals.push_back(new Animal(xx, yy));
+void Director::spawnAnimal(const Vector2D& vect) {
+	animals.push_back(new Animal(vect));
 }
 
-void Director::spawnPredator(int xx, int yy) {
-	animals.push_back(new Predator(xx, yy));
+void Director::spawnPredator(const Vector2D& vect) {
+	animals.push_back(new Predator(vect));
 }
 
 bool Director::compareForBreed(Animal* a1, Animal* a2) const {
@@ -78,22 +78,22 @@ void Director::movePhase() {
 
 		switch (direction) {
 		case 0: // go right
-			if (animal->getPos().at(0) < columns - 1) {
+			if (animal->getPos().x < columns - 1) {
 				animal->move(direction);
 			}
 			break;
 		case 1: // go left
-			if (animal->getPos().at(0) > 0) {
+			if (animal->getPos().x > 0) {
 				animal->move(direction);
 			}
 			break;
 		case 2: // go down
-			if (animal->getPos().at(1) < rows - 1) {
+			if (animal->getPos().y < rows - 1) {
 				animal->move(direction);
 			}
 			break;
 		case 3: // go up
-			if (animal->getPos().at(1) > 0) {
+			if (animal->getPos().y > 0) {
 				animal->move(direction);
 			}
 		}
@@ -127,7 +127,7 @@ void Director::resolve() {
 
 		for (int ii = 0; ii < a.size(); ++ii) {
 
-			if (a[i] != a[ii] && a[i]->getPos().at(0) == a[ii]->getPos().at(0) && a[i]->getPos().at(1) == a[ii]->getPos().at(1)) {
+			if (a[i] != a[ii] && a[i]->getPos().x == a[ii]->getPos().x && a[i]->getPos().y == a[ii]->getPos().y) {
 
 				// Breeding with second animal
 				if (compareForBreed(a[i], a[ii])) {
@@ -138,10 +138,10 @@ void Director::resolve() {
 					std::cout << "s have bred\n";
 
 					if (a[i]->getType() == "Animal") {
-						spawnAnimal(a[i]->getPos().at(0), a[i]->getPos().at(1));
+						spawnAnimal(a[i]->getPos());
 					}
 					else {
-						spawnPredator(a[i]->getPos().at(0), a[i]->getPos().at(1));
+						spawnPredator(a[i]->getPos());
 					}
 				}
 

@@ -3,5 +3,5 @@
 
 int Predator::numbOfPredators = 0;
 
-Predator::Predator(int xx, int yy)
-	: Animal{ numbOfPredators++,xx,yy }, hunger{ 0 } {}
+Predator::Predator(const Vector2D& vect)
+	: Animal{ numbOfPredators++,vect }, hunger{ 0 } {}

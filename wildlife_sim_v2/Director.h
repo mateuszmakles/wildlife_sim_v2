@@ -3,6 +3,8 @@
 
 #include <vector>
 
+struct Vector2D;
+
 class Animal;
 
 class Director {
@@ -18,8 +20,8 @@ public:
 private:
 	const int getRandom(int max) const;
 
-	void spawnAnimal(int xx, int yy);
-	void spawnPredator(int xx, int yy);
+	void spawnAnimal(const Vector2D& vect);
+	void spawnPredator(const Vector2D& vect);
 
 	bool compareForBreed(Animal* a1, Animal* a2) const;
 	bool compareForEat(Animal* a1, Animal* a2) const;
